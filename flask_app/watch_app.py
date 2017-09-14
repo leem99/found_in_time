@@ -2,13 +2,18 @@ import os
 from flask import (Flask, request, redirect, url_for, send_from_directory,\
     render_template)
 from werkzeug.utils import secure_filename
+import pandas as pd
+import numpy as np
 
+from sklearn.metrics.pairwise import cosine_similarity
+from keras.models import load_model, Model
+from keras.applications.inception_v3 import InceptionV3
 
+#----------  Open Model --------------------#
+fvecs = pd.read_csv('all_watch_info.csv')
 
 
 #---------- URLS AND WEB PAGES -------------#
-
-
 UPLOAD_FOLDER = 'uploads'
 ALLOWED_EXTENSIONS = set([ 'png', 'jpg', 'jpeg','JPG'])
 
@@ -23,28 +28,22 @@ def allowed_file(filename):
 def upload_file():
     if request.method == 'POST':
         file = request.files['file']
-        if file and allowed_file(file.filename):
+        if file and allowed_file(file.filename):		
+            global rec_watch
+            rec_watch = 'https://www.prestigetime.com/images/watches/214270_Black_Luminous.jpg'
+            global rec_list
+            rec_list = ['https://www.prestigetime.com/images/watches/311.33.42.30.01.001.jpg',
+                'https://www.prestigetime.com/images/watches/214270_Black_Luminous.jpg']
+            
             filename = secure_filename(file.filename)
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
             return redirect(url_for('uploaded_file', filename=filename))
-    return '''
-    <!doctype html>
-    <title>Upload new File</title>
-
-
-    <h1>Awesome Time:</h1>
-    <h2>Mitch Lee's App to Help You Find the Perfect Wristwatch </h2>
-    <h4>Upload new File</h4>
-    <form action="" method=post enctype=multipart/form-data>
-      <p><input type=file name=file>
-         <input type=submit value=Upload>
-    </form>
-    '''
+    return render_template('home_page.html') 
 
 @app.route('/show/<filename>')
 def uploaded_file(filename):
     filename = 'http://127.0.0.1:5000/uploads/' + filename
-    return render_template('watch_page.html', filename=filename)
+    return render_template('watch_page.html', filename=filename,rec_list=rec_list)
 
 @app.route('/uploads/<filename>')
 def send_file(filename):

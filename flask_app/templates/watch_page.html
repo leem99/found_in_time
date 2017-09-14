@@ -1,7 +1,25 @@
 <!doctype html>
-<title>Hello from Flask</title>
+<title>Awsome Time Watch Recommendations</title>
+
+<h2> Your Watch </h2>
+
 {% if filename %}
-  <img src="{{filename}}">
+  <img src="{{filename}}" height = 200>
 {% else %}
-  <h1>no image for whatever reason</h1>
+  <h3>Upload Failed </h3>
+    <!doctype html>
 {% endif %}
+
+<h2> Recommended Watch </h2>
+{% if rec_list %}
+{% for rec in rec_list %}
+  <img src="{{rec}}" height = 200>
+{% endfor %}
+{% else %}
+  <h3>Recommendation Failed </h3>
+{% endif %}
+
+
+
+
+
