@@ -1,5 +1,10 @@
 <!doctype html>
-<title>Awsome Time Watch Recommendations</title>
+<head>
+<link rel="stylesheet" type="text/css" href="/static/style.css">
+</head>
+
+
+<title>AwesomeTime Watch Recommendations</title>
 
 <h2> Your Watch </h2>
 
@@ -13,7 +18,17 @@
 <h2> Recommended Watch </h2>
 {% if rec_list %}
 {% for rec in rec_list %}
-  <img src="{{rec}}" height = 200>
+<figure>
+    <img src= "{{rec[1]}}"  height=200 />
+    <figcaption> 
+    <a href= "{{rec[1]}}" > This One </a>
+        <br> 
+            <a href= "{{rec[0]}}" > More Like This One </a>
+    </figcaption>
+</figure>
+
+
+
 {% endfor %}
 {% else %}
   <h3>Recommendation Failed </h3>
