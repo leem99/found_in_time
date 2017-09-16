@@ -29,8 +29,8 @@ img_width, img_height = 299, 299
 n_features = 1
 
 top_model_weights_path = 'bottleneck_xception_model.h5'
-train_data_dir = 'multi_class_testing/train/'
-validation_data_dir = 'multi_class_testing/test/'
+train_data_dir = 'binary_gender_masked/train/'
+validation_data_dir = 'binary_gender_masked/test/'
 
 available_train_files = len(os.listdir(train_data_dir + 'female/'))     + len(os.listdir(train_data_dir + 'male/'))
 available_test_files = len(os.listdir(validation_data_dir + 'female/'))     + len(os.listdir(validation_data_dir+'male/'))
