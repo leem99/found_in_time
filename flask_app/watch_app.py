@@ -22,7 +22,8 @@ f_vec_df = pd.DataFrame(f_vecs, index=[watch_names['file_name']])
 
 # Descriptive Data Regarding Each watch
 watch_df = pd.read_csv('all_watch_info_with_indicators.csv')
-url_dict = dict(zip(watch_df.image_name, watch_df.image_url))
+img_url_dict = dict(zip(watch_df.image_name, watch_df.image_url))
+url_dict = dict(zip(watch_df.image_name, watch_df.url))
 
 #---------- OPEN Model ----------------------#
 watch_model = load_model('inceptionv3_raw_2048.h5')
@@ -95,7 +96,7 @@ def upload_file():
             uploaded_files.append(filename)
             
             img = prepare_image('uploads/'+str(filename)) 
-            n_recs = 6
+            n_recs = 8
             
             recommend_names = make_rec(img,n_recs)
 
@@ -106,7 +107,9 @@ def upload_file():
             rec_list = []
             for rec in recommend_names:
                 rec_list.append(
-                    [rec,'http://127.0.0.1:5000/static/images/'+rec+'.jpg'])
+                    [rec,
+                     'http://127.0.0.1:5000/static/images/'+rec+'.jpg',
+                     url_dict[rec]])
 
             rec_dict[filename] = rec_list    
                 
@@ -122,12 +125,14 @@ def uploaded_file(filename):
         # If pred doesn't exist make new pred
         img = prepare_image(
             'static/images/'+filename+'.jpg') 
-        n_recs = 6
+        n_recs = 8
         recommend_names = make_rec(img,n_recs)
         rec_list = []
         for rec in recommend_names:
             rec_list.append(
-                [rec,'http://127.0.0.1:5000/static/images/'+rec+'.jpg'])
+                [rec,
+                 'http://127.0.0.1:5000/static/images/'+rec+'.jpg',
+                 url_dict[rec]])
         rec_dict[filename] = rec_list
     
     # Check if Uploaded Files

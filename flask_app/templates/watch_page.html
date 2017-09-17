@@ -1,12 +1,27 @@
-<!doctype html>
-<head>
-<link rel="stylesheet" type="text/css" href="/static/style.css">
-</head>
+<!DOCTYPE html>
+<html>
+<title>Browse Page</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+.w3-sidebar a {font-family: "Roboto", sans-serif}
+body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
+</style>
+<body class="w3-content" style="max-width:1200px">
 
+<title>Found in Time Recommendations </title>
+    
+  
+<!-- Top header -->
+<header class="w3-container w3-large w3-black">
+    <p class="w3-left">Found in Time</p>
+</header>
 
-<title>AwesomeTime Watch Recommendations</title>
-
-<h2> Your Watch </h2>
+<h2>Your Image</h2>
 
 {% if filename %}
   <img src="{{filename}}" height = 200>
@@ -15,26 +30,78 @@
     <!doctype html>
 {% endif %}
 
-<h2> Recommended Watch </h2>
-{% if rec_list %}
-{% for rec in rec_list %}
-<figure>
-    <img src= "{{rec[1]}}"  height=200 />
-    <figcaption> 
-    <a href= "{{rec[1]}}" > This One </a>
-        <br> 
-            <a href= "{{rec[0]}}" > More Like This One </a>
-    </figcaption>
-</figure>
+<h2> Recommendations </h2>
+  <!-- Product grid -->
+  <div class="w3-row w3-grayscale">
+    <div class="w3-col l3 s6">
+      <div class="w3-container">
+        <img src="{{rec_list[0][1]}}" style="height:300px;">
+        <div class="w3-padding-64 w3-large w3-text-grey" style="font-weight:bold">
+            <a href="{{rec_list[0][2]}}" class="w3-bar-item w3-button">Learn More</a>
+            <a href="{{rec_list[0][0]}}" class="w3-bar-item w3-button">More Like This</a>
+        </div>      
+      </div>
+      <div class="w3-container">
+        <img src="{{rec_list[4][1]}}" style="height:300px;">
+          <div class="w3-padding-64 w3-large w3-text-grey" style="font-weight:bold">
+            <a href="{{rec_list[4][2]}}" class="w3-bar-item w3-button">Learn More</a>
+            <a href="{{rec_list[4][0]}}" class="w3-bar-item w3-button">More Like This</a>
+          </div>  
+      </div>
+    </div>
 
+    <div class="w3-col l3 s6">
+      <div class="w3-container">
+        <div class="w3-display-container">
+          <img src="{{rec_list[1][1]}}" style="height:300px;">
+          <div class="w3-padding-64 w3-large w3-text-grey" style="font-weight:bold">
+            <a href="{{rec_list[1][2]}}" class="w3-bar-item w3-button">Learn More</a>
+            <a href="{{rec_list[1][0]}}" class="w3-bar-item w3-button">More Like This</a>
+          </div>
+        </div>
+      </div>
+      <div class="w3-container">
+        <img src="{{rec_list[5][1]}}" style="height:300px;">
+        <div class="w3-padding-64 w3-large w3-text-grey" style="font-weight:bold">
+            <a href="{{rec_list[5][2]}}" class="w3-bar-item w3-button">Learn More</a>
+            <a href="{{rec_list[5][0]}}" class="w3-bar-item w3-button">More Like This</a>
+          </div>
+      </div>
+    </div>
 
-
-{% endfor %}
-{% else %}
-  <h3>Recommendation Failed </h3>
-{% endif %}
-
-
-
-
-
+    <div class="w3-col l3 s6">
+      <div class="w3-container">
+        <img src="{{rec_list[2][1]}}" style="height:300px;">
+          <div class="w3-padding-64 w3-large w3-text-grey" style="font-weight:bold">
+            <a href="{{rec_list[2][2]}}" class="w3-bar-item w3-button">Learn More</a>
+            <a href="{{rec_list[2][0]}}" class="w3-bar-item w3-button">More Like This</a>
+          </div>
+      </div>
+      <div class="w3-container">
+        <div class="w3-display-container">
+          <img src="{{rec_list[6][1]}}" style="height:300px;">
+            <div class="w3-padding-64 w3-large w3-text-grey" style="font-weight:bold">
+            <a href="{{rec_list[6][2]}}" class="w3-bar-item w3-button">Learn More</a>
+            <a href="{{rec_list[6][0]}}" class="w3-bar-item w3-button">More Like This</a>
+          </div>
+        </div>
+      </div>
+    </div>
+      
+  <div class="w3-col l3 s6">
+      <div class="w3-container">
+        <img src="{{rec_list[3][1]}}" style="height:300px;">
+          <div class="w3-padding-64 w3-large w3-text-grey" style="font-weight:bold">
+            <a href="{{rec_list[3][2]}}" class="w3-bar-item w3-button">Learn More</a>
+            <a href="{{rec_list[3][0]}}" class="w3-bar-item w3-button">More Like This</a>
+          </div>
+      </div>
+      <div class="w3-container">
+        <img src="{{rec_list[7][1]}}" style="height:300px;">
+          <div class="w3-padding-64 w3-large w3-text-grey" style="font-weight:bold">
+            <a href="{{rec_list[7][2]}}" class="w3-bar-item w3-button">Learn More</a>
+            <a href="{{rec_list[7][0]}}" class="w3-bar-item w3-button">More Like This</a>
+          </div>
+      </div>
+    </div>
+  </div>
