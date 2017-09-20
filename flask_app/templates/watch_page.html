@@ -18,21 +18,33 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
   
 <!-- Top header -->
 <header class="w3-container w3-large w3-black">
-    <p class="w3-left">Found in Time</p>
+<div class="w3-row">
+    <a href="http://localhost:5000/" class="w3-left w3-button">Found in Time</a>
+    </div>
 </header>
 
-<h2>Your Image</h2>
-
-{% if filename %}
-  <img src="{{filename}}" height = 200>
-{% else %}
-  <h3>Upload Failed </h3>
-    <!doctype html>
-{% endif %}
-
+<h2> </h2>
+    
+<div class="w3-row">
+    <div class="w3-col l3 s6">
+      <div class="w3-container">
+        <img src="{{filename}}" style="height:300px;">    
+      </div>
+    </div>
+  
+    <div class="w3-col l3 s6" style="padding-left: 5cm">
+      <div class="w3-container">
+        <div class="w3-display-container">
+            <img src="{{ban}}" style="height:300px;text-align:right">
+        </div>
+      </div>
+     </div>    
+</div> 
+    
+    
 <h2> Recommendations </h2>
   <!-- Product grid -->
-  <div class="w3-row w3-grayscale">
+  <div class="w3-row">
     <div class="w3-col l3 s6">
       <div class="w3-container">
         <img src="{{rec_list[0][1]}}" style="height:300px;">
